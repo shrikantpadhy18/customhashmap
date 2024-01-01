@@ -61,6 +61,17 @@ public class HashMapImplementation{
                 return n*1.0f/bucket.length;
             }
 
+            public boolean containsKey(K key){
+                int bi = HashFunc(key);
+                LinkedList<Node> currBucket = bucket[bi];
+                int ei = searchInBucket(key,currBucket);
+                if(ei == -1){
+                    return false;
+
+                }
+                return true;
+            }
+
             private void rehash(){
                 LinkedList<Node> [] oldbucket = bucket;
                 n = 0;
@@ -135,6 +146,7 @@ public class HashMapImplementation{
         mp.put("c",30);
         mp.put("x",133);
         mp.put("y",73);
+        System.out.println(mp.containsKey("c"));
         System.out.println(mp.capacity());
         System.out.println(mp.load());
         System.out.println(" size : "+mp.size());
@@ -151,6 +163,8 @@ public class HashMapImplementation{
 
         System.out.println(mp.remove("c"));
         System.out.println(mp.remove("c"));
+
+        System.out.println(mp.containsKey("c"));
         
     }
 }
